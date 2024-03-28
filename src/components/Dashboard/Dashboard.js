@@ -19,7 +19,6 @@ const  Dashboard = () => {
         <Navbar.Collapse id="navbarSupportedContent">
           <Nav className="me-auto">
             <Nav.Link href="#" active>Home</Nav.Link>
-        
           </Nav>
           <Form className="d-flex">
             <FormControl
