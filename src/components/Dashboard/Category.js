@@ -1,26 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Container, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Category = () => {
+  const [categories, setCategories] = useState([]);
 
-  const categories = [
-    { title: 'Meja', image:'assets/category/meja.jpg' },
-    { title: 'Bantal', image: 'assets/category/bantal.jpg' },
-    { title: 'Kursi', image: 'assets/category/kursi.jpg' },
-    { title: 'Sofa', image: 'assets/category/sofa.jpg' },
-    { title: 'Lemari', image: 'assets/category/lemari.jpg' },
-    { title: 'Kasur', image: 'assets/category/kasur.jpg' }
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/categories/view'); // Ganti URL dengan URL API yang sesuai
+        setCategories(response.data);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
 
+    fetchData();
+  }, []);
+  console.log(categories)
   return (
     <Container>
       <h2 className="mt-4 mb-3">Kategori Pilihan</h2>
       <Row xs={1} md={3} lg={6} className="g-4">
-        {categories.map((category, index) => (
+        {categories?.map((category, index) => (
           <Col key={index}>
             <Card>
-              <Card.Img variant="top" src={category.image} alt={category.title} />
+              <Card.Img variant="top" src={'http://localhost:3000/' + category.image_path} alt={category.title} />
+            
               <Card.Body>
                 <Card.Title>{category.title}</Card.Title>
               </Card.Body>
