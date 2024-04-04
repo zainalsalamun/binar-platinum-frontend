@@ -9,11 +9,14 @@ const Category = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/categories/view'); // Ganti URL dengan URL API yang sesuai
+        const response = await axios.get('http://localhost:3000/api/categories/view');
         setCategories(response.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
-      }
+        setCategories([
+          { id: 1, title: 'Default Category', image_path: 'default.png' },
+        ])
+      } 
     };
 
     fetchData();
@@ -27,7 +30,6 @@ const Category = () => {
           <Col key={index}>
             <Card>
               <Card.Img variant="top" src={'http://localhost:3000/' + category.image_path} alt={category.title} />
-            
               <Card.Body>
                 <Card.Title>{category.title}</Card.Title>
               </Card.Body>
