@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar, Nav, Button, Form, FormControl, Badge } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { PersonCircle,CartFill } from 'react-bootstrap-icons';
+import { BrowserRouter, Link } from 'react-router-dom';
 
 const  Dashboard = () => {
   return (
@@ -31,14 +32,19 @@ const  Dashboard = () => {
           </Form>
           <Nav>
           <Button variant="light">
-      <PersonCircle size={24} />
-    </Button>
-            <Button variant="outline-dark" style={{ marginLeft: '10px', borderRadius: '10px' }}>
+   
+            <Link to="/login">
+           <PersonCircle size={24} color='#343a40' />
+         
+           </Link>
+             </Button>
+            {/* <Button variant="outline-dark" style={{ marginLeft: '10px', borderRadius: '10px' }}>
               <i className="bi bi-cart"></i> <Badge bg="secondary">0</Badge>
-            </Button>
+            </Button> */}
            <Button variant="light">
-      {/* <CartFill size={24} />  */}
-    </Button>
+          
+            <CartFill size={24} /> 
+          </Button>
           </Nav>
         </Navbar.Collapse>
       </div>
