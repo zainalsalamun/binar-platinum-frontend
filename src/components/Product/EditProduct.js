@@ -1,75 +1,75 @@
 import React, { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
+import axios from 'axios';
 
-function ProductForm({ product }) {
-  const [namaProduk, setNamaProduk] = useState(product.nama_produk);
-  const [harga, setHarga] = useState(product.harga);
-  const [deskripsi, setDeskripsi] = useState(product.deskripsi);
-  const [namaFile, setNamaFile] = useState(product.nama_file);
+const EditProductForm = ({ product }) => {
+  const [editedProduct, setEditedProduct] = useState(product);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Lakukan sesuatu dengan data produk yang diperbarui, misalnya kirim ke server atau perbarui state aplikasi
-    console.log({ namaProduk, harga, deskripsi, namaFile });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditedProduct({ ...editedProduct, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Lakukan sesuatu dengan data yang diedit
+    
+    console.log('Data yang diedit:', editedProduct);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="nama_produk">Product Name</label>
-        <input
+    <Form onSubmit={handleSubmit}>
+      <Form.Group controlId="nama_produk">
+        <Form.Label>Product Name</Form.Label>
+        <Form.Control
           type="text"
-          id="nama_produk"
           name="nama_produk"
-          value={namaProduk}
+          value={editedProduct.nama_produk}
           placeholder="Product Name"
-          className="form-control"
+          onChange={handleChange}
           required
-          onChange={(event) => setNamaProduk(event.target.value)}
         />
-      </div>
-      <div className="form-group">
-        <label htmlFor="harga">Price</label>
-        <input
+      </Form.Group>
+      <Form.Group controlId="harga">
+        <Form.Label>Price</Form.Label>
+        <Form.Control
           type="number"
-          id="harga"
           name="harga"
-          value={harga}
+          value={editedProduct.harga}
           placeholder="Price"
-          className="form-control"
+          onChange={handleChange}
           required
-          onChange={(event) => setHarga(event.target.value)}
         />
-      </div>
-      <div className="form-group">
-        <label htmlFor="deskripsi">Description</label>
-        <textarea
-          id="deskripsi"
+      </Form.Group>
+      <Form.Group controlId="deskripsi">
+        <Form.Label>Description</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={8}
           name="deskripsi"
-          rows="8"
+          value={editedProduct.deskripsi}
           placeholder="Description"
-          className="form-control"
+          onChange={handleChange}
           required
-          value={deskripsi}
-          onChange={(event) => setDeskripsi(event.target.value)}
-        ></textarea>
-      </div>
-      <div className="form-group">
-        <label htmlFor="nama_file">Picture</label>
-        <input
-          type="text"
-          id="nama_file"
-          name="nama_file"
-          value={namaFile}
-          placeholder="Picture"
-          className="form-control"
-          required
-          onChange={(event) => setNamaFile(event.target.value)}
         />
-        <small className="form-text text-muted">Jika tidak ingin mengganti picture, biarkan kosong.</small>
-      </div>
-      <button type="submit" className="btn btn-primary">Simpan</button>
-    </form>
+      </Form.Group>
+      <Form.Group controlId="nama_file">
+        <Form.Label>Picture</Form.Label>
+        <Form.Control
+          type="text"
+          name="nama_file"
+          value={editedProduct.nama_file}
+          placeholder="Picture"
+          onChange={handleChange}
+          required
+        />
+        <Form.Text className="text-muted">Jika tidak ingin mengganti picture, biarkan kosong.</Form.Text>
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Simpan
+      </Button>
+    </Form>
   );
-}
+};
 
-export default ProductForm;
+export default EditProductForm;

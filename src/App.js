@@ -1,59 +1,44 @@
 import "./App.css";
 import Profile from "./components/Profile/Profile";
-import Login from "./components/Login/Login";
+//import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
 import { useState } from "react";
-import Dashboard from "./components/Dashboard/Dashboard";
+//import Dashboard from "./components/Dashboard/Dashboard";
 import Sliders from "./components/Dashboard/Sliders";
 import Footer from "./components/Dashboard/Footer";
 import Product from "./components/Product/Product";
 import Category from "./components/Dashboard/Category";
+import NavBar from "./components/Dashboard/NavBar";
+import ProductDetail from "./components/Product/ProductDetail";
+import Home from "./page/Home.js";
+import LoginPage from "./page/LoginPage.js";
+import RegisterPage from "./page/RegisterPage.js";
+import AddProduct from "./components/Product/AddProduct";
+import EditProduct from "./components/Product/EditProduct";
+import ProductList from "./components/Product/ListProduct.js";
 
 function App() {
   const [userstate, setUserState] = useState({});
   
-  return (
-    <div>
-      <Dashboard />
-      <h2/>
-      <Sliders />
-      <h1/>
-      <Category />
-      <h1/>
-      <Product />
-      <h2/>
-      <Footer />
-      <h2/>
-      
- 
-  </div>
-    // <div className="App">
-    //   <Router>
-    //     <Routes>
-    //       <Route
-    //         path="/"
-    //         element={
-    //           userstate && userstate._id ? (
-    //             <Profile
-    //               setUserState={setUserState}
-    //               username={userstate.fname}
-    //             />
-    //           ) : (
-    //             <Login setUserState={setUserState} />
-    //           )
-    //         }
-    //       ></Route>
-    //       <Route
-    //         path="/login"
-    //         element={<Login setUserState={setUserState} />}
-    //       ></Route>
-    //       <Route path="/signup" element={<Register />}></Route>
+  return (   
+     
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/sliders" element={<Sliders />} />
+        <Route path="/category" element={<Category />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/footer" element={<Footer />} />
+        <Route path="/add-product" element={<AddProduct />} />
+        <Route path="/edit-product/:id" element={<EditProduct />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/product-list" element={<ProductList />} />
+      </Routes>
+    </BrowserRouter>
   
-
-    //     </Routes>
-    //   </Router>
-    // </div>
   );
 }
 
