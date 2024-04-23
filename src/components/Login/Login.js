@@ -10,7 +10,7 @@ const Login = ({ setUserState }) => {
   const [user, setUserDetails] = useState({
     email: "",
     password: "",
-  });
+  })
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -37,11 +37,10 @@ const Login = ({ setUserState }) => {
     e.preventDefault();
     setFormErrors(validateForm(user));
     setIsSubmit(true);
-      if (!formErrors) {
-        setIsSubmit(true);
-      }
-
-  };
+    if (!formErrors) {
+      setIsSubmit(true);
+    }
+  }
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
@@ -49,10 +48,13 @@ const Login = ({ setUserState }) => {
       axios.post("http://localhost:3000/api/login", user).then((res) => {
         alert(res.data.message);
         setUserState(res.data.user);
+        console.log(res.data.user);
         navigate("/", { replace: true });
       });
     }
-  }, [formErrors]);
+  }, [
+    formErrors,
+  ]);
   return (
     <div className={loginstyle.login}>
       <form>
