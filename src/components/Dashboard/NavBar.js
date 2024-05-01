@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Navbar, Nav, Button } from 'react-bootstrap';
-import { FaSignInAlt, FaUserPlus, FaShoppingCart } from 'react-icons/fa'; // Perubahan disini
-//import { useSelector } from 'react-redux';
+import { FaSignInAlt, FaUserPlus, FaShoppingCart } from 'react-icons/fa'; 
+import { useSelector } from 'react-redux';
 const NavBar = () => {
-  //const state = useSelector(state => state.handleCart);
+  const state = useSelector(state => state.handleCart);
   return (
     <Navbar bg="light" expand="lg" className="py-3 sticky-top">
       <Navbar.Brand as={NavLink} to="/" className="fw-bold fs-4 px-2">
@@ -39,7 +39,7 @@ const NavBar = () => {
             <FaUserPlus className="mr-1" /> Register
           </Button>
           <Button as={NavLink} to="/cart" variant="outline-dark" className="m-2">
-            <FaShoppingCart className="mr-1" /> Cart
+            <FaShoppingCart className="mr-1" /> Cart  ({state.length}) 
           </Button>
         </div>
       </Navbar.Collapse>
