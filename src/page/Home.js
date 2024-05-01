@@ -1,11 +1,8 @@
-// import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
-// import { useState } from "react";
-//import Dashboard from "../components/Dashboard/Dashboard";
 import Sliders from "../components/Dashboard/Sliders";
 import Footer from "../components/Dashboard/Footer";
-import Product from "../components/Product/Product";
 import Category from "../components/Dashboard/Category";
 import NavBar from "../components/Dashboard/NavBar";
+import Product from "../components/Product/Products";
 
 
 
@@ -19,11 +16,11 @@ const  Home = () =>  {
       <h1/>
       <Category />
       <h1/>
-      <Product 
+      <Product
       />
       <h2/>
       <Footer />
-     <h2/>
+      <h2/>
       
   </div>
     );
