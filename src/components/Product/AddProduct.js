@@ -8,7 +8,9 @@ const AddProductForm = () => {
     nama_produk: '',
     harga: '',
     deskripsi: '',
-    nama_file: ''
+    nama_file: '',
+    kategori: '',
+    image: ''
   });
 
   const handleChange = (e) => {
@@ -89,6 +91,28 @@ const AddProductForm = () => {
                 placeholder="Masukkan Nama File"
                 name="nama_file"
                 value={formData.nama_file}
+                onChange={handleChange}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formNamaFile" className="mb-4">
+              <Form.Label>Kategori</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Masukkan Kategori"
+                name="nama_file"
+                value={formData.kategori}
+                onChange={handleChange}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formNamaFile" className="mb-4">
+              <Form.Label>Image</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Masukkan Image"
+                name="nama_file"
+                value={formData.image}
                 onChange={handleChange}
               />
             </Form.Group>
