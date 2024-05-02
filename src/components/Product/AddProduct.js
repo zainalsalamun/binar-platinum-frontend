@@ -21,7 +21,7 @@ const AddProductForm = () => {
       [name]: value
     });
 
-    if (name === 'nama_file') {
+    if (name === 'image') {
       const file = e.target.files[0];
       setFormData({
         ...formData,
@@ -106,7 +106,7 @@ const AddProductForm = () => {
               />
             </Form.Group>
 
-            <Form.Group controlId="formNamaFile" className="mb-4">
+            {/* <Form.Group controlId="formNamaFile" className="mb-4">
               <Form.Label>Image</Form.Label>
               <Form.Control
                 type="text"
@@ -115,6 +115,11 @@ const AddProductForm = () => {
                 value={formData.image}
                 onChange={handleChange}
               />
+            </Form.Group> */}
+
+            <Form.Group controlId="formFile" className="mb-4">
+              <Form.Label>Pilih Gambar</Form.Label>
+              <Form.Control type="file" name="image" onChange={handleChange} />
             </Form.Group>
 
             <div className="d-grid">
