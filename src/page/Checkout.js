@@ -2,6 +2,7 @@ import React from "react";
 import { Footer, Navbar } from "../components/Dashboard";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import axios from "axios";
 const Checkout = () => {
   const state = useSelector((state) => state.handleCart);
 
@@ -19,6 +20,80 @@ const Checkout = () => {
       </div>
     );
   };
+
+  const handleCheckout = () => {
+    if (state.length === 0) {
+      return <SuccesCheckout />
+    }
+
+    const sendOrder = async () => {
+      const url = 'https://foodstore-api.herokuapp.com/order';
+      const data = {
+        items: state.map(item => ({
+          id_produk: item.id,
+          jumlah_produk: item.qty
+        }))
+      };
+
+      try {
+        const response = await axios.post(url, data);
+        if (response.status === 201) {
+          alert('Your order has been processed');
+          window.location.href = '/';
+        }
+      } catch (error) {
+        console.error(error);
+        alert('Failed to process order');
+      }
+    };
+
+    return (
+      <div className="container my-5">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="card">
+              <div className="card-body">
+                <h3 className="card-title">Checkout</h3>
+                <p className="card-text">
+                  Total Items: {state.reduce((total, item) => total + item.qty, 0)}<br />
+                  Total Price: Rp. {state.reduce((total, item) => total + item.harga * item.qty, 0)}<br />
+                </p>
+                <button onClick={sendOrder} className="btn btn-primary">Checkout</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+
+const SuccesCheckout = () => {
+  return (
+    <div className="container my-5">
+      <div className="row">
+        <div className="col-md-12">
+          <div className="card">
+            <div className="card-body">
+              <h3 className="card-title">Successful Checkout</h3>
+              <p className="card-text">
+                Your order has been successfully processed.
+              </p>
+              <Link
+                to="/"
+                className="btn btn-outline-dark mt-3"
+              >
+                Continue Shopping
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
 
   const ShowCheckout = () => {
     let subtotal = 0;
@@ -168,7 +243,7 @@ const Checkout = () => {
                         <br />
                         <select className="form-select" id="state" required>
                           <option value="">Choose...</option>
-                          <option>Punjab</option>
+                          <option>Jakarta</option>
                         </select>
                         <div className="invalid-feedback">
                           Please provide a valid state.
@@ -269,7 +344,7 @@ const Checkout = () => {
 
                     <button
                       className="w-100 btn btn-primary "
-                      type="submit" disabled
+                      type="submit" onClick={handleCheckout}
                     >
                       Continue to checkout
                     </button>

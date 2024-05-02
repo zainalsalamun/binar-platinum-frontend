@@ -1,8 +1,39 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import React, { useState } from 'react';
+import { Container, Row, Col, Form, Button} from 'react-bootstrap';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+const LoginForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-const Login = () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const rawData = JSON.stringify({ email, password });
+      const response = await axios.post('http://103.127.133.54:3000/api/login', rawData, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+      if (response && response.data) {
+        if(response.data)
+        console.log(response.data); 
+        window.location.href = "/";
+        localStorage.setItem('token', response.data.token);
+      } else {
+        setError(response.data.message)
+        console.log(response.data);
+        
+      }
+  
+      console.log(response); 
+    } catch (error) {
+      console.error(error);
+      setError(error.message);
+    }
+  };
   return (
     <>
       <Container className="my-3 py-3">
@@ -16,6 +47,7 @@ const Login = () => {
                 <Form.Control
                   type="email"
                   placeholder="name@example.com"
+                  onChange={(e) => setEmail(e.target.value)} 
                 />
               </Form.Group>
               <Form.Group className="my-3">
@@ -23,14 +55,16 @@ const Login = () => {
                 <Form.Control
                   type="password"
                   placeholder="Password"
+                  onChange={(e) => setPassword(e.target.value)} 
                 />
               </Form.Group>
-              <Form.Group className="my-3">
+              { <Form.Group className="my-3">
                 <p>New Here? <Link to="/register" className="text-decoration-underline text-info">Register</Link> </p>
-              </Form.Group>
+              </Form.Group> }
+              {error && <p className="text-danger mt-2">{error}</p>}
               <div className="text-center">
-                <Button variant="dark" type="submit" disabled>
-                  Login
+                <Button variant="dark" type="submit" onClick={handleLogin} >
+                  Login 
                 </Button>
               </div>
             </Form>
@@ -41,4 +75,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;

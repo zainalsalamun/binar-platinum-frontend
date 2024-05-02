@@ -9,7 +9,7 @@ const ProductDetail = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/products/${id}` )
+    fetch(`http://103.127.133.54:3000/api/products/${id}` )
       .then(response => response.json())
       .then(data => setProduct(data))
       .catch(error => console.error('Error fetching product:', error));

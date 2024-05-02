@@ -12,7 +12,6 @@ const EditProductForm = ({ product }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Lakukan sesuatu dengan data yang diedit
     
     console.log('Data yang diedit:', editedProduct);
   };
@@ -24,7 +23,7 @@ const EditProductForm = ({ product }) => {
         <Form.Control
           type="text"
           name="nama_produk"
-          value={editedProduct.nama_produk}
+          value={editedProduct.nama_produk || ''}
           placeholder="Product Name"
           onChange={handleChange}
           required
@@ -35,7 +34,7 @@ const EditProductForm = ({ product }) => {
         <Form.Control
           type="number"
           name="harga"
-          value={editedProduct.harga}
+          value={editedProduct.harga || ''}
           placeholder="Price"
           onChange={handleChange}
           required
@@ -47,18 +46,18 @@ const EditProductForm = ({ product }) => {
           as="textarea"
           rows={8}
           name="deskripsi"
-          value={editedProduct.deskripsi}
+          value={editedProduct.deskripsi || ''}
           placeholder="Description"
           onChange={handleChange}
           required
         />
       </Form.Group>
-      <Form.Group controlId="nama_file">
+      <Form.Group controlId="image">
         <Form.Label>Picture</Form.Label>
         <Form.Control
           type="text"
-          name="nama_file"
-          value={editedProduct.nama_file}
+          name="image"
+          value={editedProduct.image || ''}
           placeholder="Picture"
           onChange={handleChange}
           required

@@ -32,7 +32,7 @@ const AddProductForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/product', formData);
+      const response = await axios.post('http://103.127.133.54:3000/api/product', formData);
       console.log(response.data);
       alert('Produk Berhasil');
       window.location.href = "/";

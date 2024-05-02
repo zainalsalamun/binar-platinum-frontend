@@ -9,7 +9,7 @@ const Category = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/categories/view');
+        const response = await axios.get('http://103.127.133.54:3000/api/categories/view');
         setCategories(response.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -29,7 +29,7 @@ const Category = () => {
         {categories?.map((category, index) => (
           <Col key={index}>
             <Card>
-              <Card.Img variant="top" src={'http://localhost:3000/' + category.image_path} alt={category.title} />
+              <Card.Img variant="top" src={'http://103.127.133.54:3000/' + category.image_path} alt={category.title} />
               <Card.Body>
                 <Card.Title>{category.title}</Card.Title>
               </Card.Body>

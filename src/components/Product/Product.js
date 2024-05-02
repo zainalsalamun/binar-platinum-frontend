@@ -13,7 +13,7 @@ function App() {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/products')
+        axios.get('http://103.127.133.54:3000/api/products')
             .then(response => {
                 
                 setProducts(response.data.data);

@@ -12,7 +12,7 @@ const ProductList = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/products'); 
+      const response = await axios.get('http://103.127.133.54:3000/api/products'); 
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching data: ', error);
@@ -21,7 +21,7 @@ const ProductList = () => {
 
   const handleDelete = async (productId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/products/${productId}`); 
+      await axios.delete(`http://103.127.133.54:3000/api/products/${productId}`); 
       fetchData();
     } catch (error) {
       console.error('Error deleting product: ', error);
