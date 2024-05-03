@@ -3,8 +3,10 @@ import { Footer, Navbar } from "../components/Dashboard";
 import { useSelector, useDispatch } from "react-redux";
 import { addCart, delCart } from "../redux/action";
 import { Link } from "react-router-dom";
+import appConfig from "../config/app.config";
 
 const Cart = () => {
+  const REACT_APP_API_URL = appConfig.apiUrl;
   const state = useSelector((state) => state.handleCart);
   const dispatch = useDispatch();
 
@@ -59,10 +61,10 @@ const Cart = () => {
                             <div className="col-lg-3 col-md-12">
                               <div
                                 className="bg-image rounded"
-                                data-mdb-ripple-color="light"
-                              >
+                                data-mdb-ripple-color="light">
                                 <img
-                                  src={item.image}
+                                 
+                                  src={REACT_APP_API_URL + item.image}
                                   // className="w-100"
                                   alt={item.title}
                                   width={100}

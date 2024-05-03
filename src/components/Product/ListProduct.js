@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Table, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import { Navbar, Footer } from '../Dashboard'; 
+import appConfig from "../../config/app.config"; 
 
 const ProductList = () => {
+  const REACT_APP_API_URL = appConfig.apiUrl;
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -12,7 +14,7 @@ const ProductList = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://103.127.133.54:3000/api/products'); 
+      const response = await axios.get(REACT_APP_API_URL + "api/products");
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching data: ', error);
@@ -21,7 +23,7 @@ const ProductList = () => {
 
   const handleDelete = async (productId) => {
     try {
-      await axios.delete(`http://103.127.133.54:3000/api/products/${productId}`); 
+      await axios.delete(REACT_APP_API_URL + `api/products/${productId}`); 
       fetchData();
     } catch (error) {
       console.error('Error deleting product: ', error);
