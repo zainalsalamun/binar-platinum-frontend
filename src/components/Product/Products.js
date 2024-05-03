@@ -3,11 +3,10 @@ import { useDispatch } from "react-redux";
 import { addCart } from "../../redux/action";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-
-
-import { Link } from "react-router-dom";
+import appConfig from "../../config/app.config";
 
 const Products = () => {
+  const REACT_APP_API_URL = appConfig.apiUrl;
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
@@ -22,7 +21,7 @@ const Products = () => {
   useEffect(() => {
     const getProducts = async () => {
       setLoading(true);
-      const response = await fetch("http://103.127.133.54:3000/api/products");
+      const response = await fetch(REACT_APP_API_URL + "api/products");
       if (componentMounted) {
         setData(await response.clone().json());
         setFilter(await response.json());
@@ -37,6 +36,9 @@ const Products = () => {
     getProducts();
   }, []);
 
+  console.log(appConfig);
+
+  console.log(filter);
   const Loading = () => {
     return (
       <>
@@ -89,7 +91,7 @@ const Products = () => {
               <div className="card text-center h-100" key={product.id}>
                 <img
                   className="card-img-top p-3"
-                  src={product.image}
+                  src={REACT_APP_API_URL  + product.image}
                   alt="Card"
                   height={300}
                 />
