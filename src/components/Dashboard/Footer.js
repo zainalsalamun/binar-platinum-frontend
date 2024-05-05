@@ -15,9 +15,9 @@ function App() {
         <Row className="text-center">
           <Col>
             <ul className="list-inline">
-              <li className="list-inline-item"><a href="#" className="text-white">Privacy Policy</a></li>
+              <li className="list-inline-item"><a href="privacy" className="text-white">Privacy Policy</a></li>
               <li className="list-inline-item">|</li>
-              <li className="list-inline-item"><a href="#" className="text-white">Terms and Conditions</a></li>
+              <li className="list-inline-item"><a href="terms" className="text-white">Terms and Conditions</a></li>
               <li className="list-inline-item">|</li>
               <li className="list-inline-item"><a href="#" className="text-white">Price Disclaimer</a></li>
               <li className="list-inline-item">|</li>
