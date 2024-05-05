@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import appConfig from '../config/app.config';
+
+const REACT_APP_API_URL = appConfig.url
 
 const Register = () => {
     const [error, setError] = useState('');
@@ -20,7 +23,7 @@ const Register = () => {
         console.log(e);
         e.preventDefault();
         try {
-            const response = await axios.post('http://103.127.133.54:3000/api/register', formData, {
+            const response = await axios.post(REACT_APP_API_URL+ 'api/register', formData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button} from 'react-bootstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import appConfig from '../config/app.config';
+
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const REACT_APP_API_URL = appConfig.url
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const rawData = JSON.stringify({ email, password });
-      const response = await axios.post('http://103.127.133.54:3000/api/login', rawData, {
+      const response = await axios.post(REACT_APP_API_URL + 'api/login', rawData, {
       headers: {
         'Content-Type': 'application/json'
       }
