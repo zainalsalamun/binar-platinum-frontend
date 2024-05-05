@@ -1,3 +1,4 @@
+import React from "react";
 import Sliders from "../components/Dashboard/Sliders";
 import Footer from "../components/Dashboard/Footer";
 import Category from "../components/Dashboard/Category";
