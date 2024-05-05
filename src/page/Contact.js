@@ -1,17 +1,29 @@
-import React from "react";
+import React from 'react'
 import Footer from '../components/Dashboard/Footer'
 import NavBar from '../components/Dashboard/NavBar'
+import { Container, Row, Col } from 'react-bootstrap'
 
 const Contact = () => {
   return (
     <div>
       <NavBar />
-      <h2 className="col-12 py-5 text-center">Contact</h2>
-      <h3 className="col-12 py-5 text-center">
-        (Telp) +62 22 75622626
-      </h3>
+      <Container>
+        <Row>
+          <Col>
+            <h2 className="col-12 py-5 text-center">Contact</h2>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <h3 className="col-12 py-5" style={{textAlign:'center'}}>
+              ☎ +62 22 75622626
+              <br />
+              📞 +62 896 6217 6234
+            </h3>
+          </Col>
+        </Row>
+      </Container>
       <Footer />
-      <h2 />
     </div>
   )
 }
