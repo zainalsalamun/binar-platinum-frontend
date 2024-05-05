@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
-import { Navbar, Footer } from '../Dashboard'; 
+import { Navbar, Footer } from '../Dashboard/'; 
 import appConfig from "../../config/app.config"; 
 
 const ProductList = () => {
