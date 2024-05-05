@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import appConfig from '../config/app.config';
 
-const REACT_APP_API_URL = appConfig.url
+const REACT_APP_API_URL = appConfig.apiUrl
 
 const Register = () => {
     const [error, setError] = useState('');

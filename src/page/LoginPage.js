@@ -8,7 +8,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const REACT_APP_API_URL = appConfig.url
+  const REACT_APP_API_URL = appConfig.apiUrl
 
   const handleLogin = async (e) => {
     e.preventDefault();
