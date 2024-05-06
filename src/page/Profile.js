@@ -11,8 +11,7 @@ const Profile = () => {
     phone: '081234567890'
   })
   const handleLogout = () => {
-    localStorage.removeItem('user')
-    window.location.href = '/login'
+ 
   }
   const handleChange = (e) => {
     setUser({...user, [e.target.name]: e.target.value})
