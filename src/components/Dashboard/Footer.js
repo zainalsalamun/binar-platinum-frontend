@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
   return (
-    <footer className="mt-5 py-5 bg-dark text-white">
+    <footer className="mt-4 py-5 bg-dark text-white">
       <Container>
         <Row className="text-center">
           <Col>
