@@ -34,7 +34,7 @@ const ProductList = () => {
     <>
       <Navbar />
       <div className="container mt-4">
-        <h1 className="text-center mb-4">Daftar Produk</h1>
+        <h1 className="text-center mb-7">Daftar Produk</h1>
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -43,13 +43,14 @@ const ProductList = () => {
               <th>Harga</th>
               <th>Deskripsi</th>
               <th>Kategori</th> 
+              <th>Image</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {products.length === 0 ? (
               <tr>
-                <td colSpan="6"> {/* Perlu penyesuaian karena ada 6 kolom */}
+                <td colSpan="6"> 
                   <Alert variant="danger">
                     <b>Produk belum tersedia</b>
                   </Alert>
@@ -62,24 +63,37 @@ const ProductList = () => {
                   <td>{product.nama_produk}</td>
                   <td>Rp. {product.harga}</td>
                   <td>{product.deskripsi}</td>
+                  <td>{product.image}</td>
                   <td>{product.kategori}</td>
                   <td>
-                    <Button variant="info" href={`/product/=${product.id}`}>
-                      Details
-                    </Button>
-                    <Button
-                      variant="danger"
-                      onClick={() => {
-                        if (window.confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-                          handleDelete(product.id);
-                        }
-                      }}
-                    >
-                      Delete
-                    </Button>
-                    <Button variant="warning" href={`/edit-product/edit=${product.id}`}>
-                      Edit
-                    </Button>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                      {/* <Button
+                        variant="info"
+                        href={`/product/=${product.id}`}
+                        style={{ marginBottom: '0.5rem' }}
+                      >
+                        Details
+                      </Button> */}
+                      <Button
+                        variant="danger"
+                        onClick={() => {
+                          if (window.confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+                            handleDelete(product.id);
+                          }
+                        }}
+                        style={{ marginBottom: '0.5rem' }}
+                      >
+                        Delete
+                      </Button>
+                      <Button
+                        variant="warning"
+                        href={`/edit-product/edit=${product.id}`}
+                        style={{ marginBottom: '0.5rem' }}
+                      >
+                        Edit
+                      </Button>
+                    </div>
+                   
                   </td>
                 </tr>
               ))
