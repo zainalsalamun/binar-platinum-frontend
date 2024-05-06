@@ -85,7 +85,11 @@ const Products = () => {
           <button className="btn btn-outline-dark btn-sm m-2" onClick={() => setFilter(data)}>All</button>
           <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("sikat")}>Sikat</button>
           <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("kursi")}> Kursi</button>
-       
+          <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("meja")}> Meja</button>
+          <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("bantal")}> Bantal</button>
+          <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("kasur")}> Kasur</button>
+          <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("lemari")}> Lemari</button>
+          <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("sofa")}> Sofa</button>
         </div>
 
         {filter.map((product) => {
