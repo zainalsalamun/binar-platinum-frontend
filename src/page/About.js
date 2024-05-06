@@ -9,21 +9,40 @@ const About = () => {
       <NavBar />
       <Container>
         <Row>
-          <Col>
-            <h2 className="col-12 py-5 text-center">About</h2>
+          <Col xs={12}>
+            <h1 className="py-5 text-center">Unveiling the IKEA Story</h1>
           </Col>
         </Row>
         <Row>
-          <Col>
-            <h3 className="col-12 py-5" style={{ textAlign: 'Justify' }}>
-              What started as a tiny mail order company in rural Sweden has now
-              become a global home furnishing brand that brings affordability,
-              design and comfort to people all over the world. We may have come
-              a long way since our humble beginnings, but our vision remains the
-              same: to create a better everyday life for the many people. Here
-              you can explore the IKEA story and learn more about our heritage
-              and the events that shaped us.
-            </h3>
+          <Col xs={12}>
+            <p className="py-5 text-center" style={{textAlign: 'Justify'}}>
+              IKEA, a Swedish-based furniture brand, was founded in a small
+              town in rural Sweden back in 1943. The company started as a tiny
+              mail order company, selling simple yet functional furniture to
+              people in need. Over the years, the company has grown into a
+              global home furnishing brand, bringing affordability, design,
+              and comfort to people all over the world.
+            </p>
+            <p className="py-5 text-center" style={{textAlign: 'Justify'}}>
+              Our story is marked by a commitment to creating a better everyday
+              life for the many people. From our humble beginnings, we have
+              remained true to our vision, and our dedication continues to
+              inspire us every day.
+            </p>
+            <p className="py-5 text-center">
+              Explore our history, learn about our heritage, and dive into the
+              events that shaped us. Let's embark on a journey to discover the
+              IKEA story.
+            </p>
+          </Col>
+        </Row>
+        <Row className="mt-5">
+          <Col xs={5}>
+            <img
+              src="https://d2xjmi1k71iy2m.cloudfront.net/dairyfarm/id/pageImages/page__en_us_1617192256__4.webp"
+              alt="IKEA"
+              className="w-100"
+            />
           </Col>
         </Row>
       </Container>
