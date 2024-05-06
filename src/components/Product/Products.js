@@ -4,6 +4,8 @@ import { addCart } from "../../redux/action";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import appConfig from "../../config/app.config";
+import axios from "axios";
+import {Button, Alert } from 'react-bootstrap';
 
 const Products = () => {
   const REACT_APP_API_URL = appConfig.apiUrl;
@@ -21,11 +23,15 @@ const Products = () => {
   useEffect(() => {
     const getProducts = async () => {
       setLoading(true);
-      const response = await fetch(REACT_APP_API_URL + "api/products");
-      if (componentMounted) {
-        setData(await response.clone().json());
-        setFilter(await response.json());
-        setLoading(false);
+      try {
+        const response = await axios.get(REACT_APP_API_URL + "api/products");
+        if (componentMounted) {
+          setData(response.data);
+          setFilter(response.data);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error(error);
       }
 
       return () => {
@@ -76,13 +82,9 @@ const Products = () => {
       <>
         <div className="buttons text-center py-5">
           <button className="btn btn-outline-dark btn-sm m-2" onClick={() => setFilter(data)}>All</button>
-          <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("Kategori 1")}>Kategori 1</button>
-          <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("Kategori 2")}>
-           Kategori 2
-          </button>
-          {/* <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("jewelery")}>Jewelery</button>
-          <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("electronics")}>Electronics</button>
-        */}
+          <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("sikat")}>Sikat</button>
+          <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("kursi")}> Kursi</button>
+       
         </div>
 
         {filter.map((product) => {
@@ -97,10 +99,10 @@ const Products = () => {
                 />
                 <div className="card-body">
                   <h5 className="card-title">
-                    {product.nama_produk.substring(0, 12)}...
+                    {product.nama_produk}
                   </h5>
                   <p className="card-text">
-                    {product.deskripsi.substring(0, 90)}...
+                    {product.deskripsi}
                   </p>
                 </div>
                 <ul className="list-group list-group-flush">
@@ -109,9 +111,12 @@ const Products = () => {
                     <li className="list-group-item">Vestibulum at eros</li> */}
                 </ul>
                 <div className="card-body">
-                  {/* <Link to={"/product/" + product.id} className="btn btn-dark m-1">
+                  {/* <NavLink to={"/product/" + product.id} className="btn btn-dark m-1">
                     Buy Now
-                  </Link> */}
+                  </NavLink> */}
+                   <Button variant="info" href={`/product/=${product.id}`}>
+                      Details
+                    </Button>
                   <button className="btn btn-dark m-1" onClick={() => addProduct(product)}>
                     Add to Cart
                   </button>
