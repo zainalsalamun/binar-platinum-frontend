@@ -1,10 +1,29 @@
-import React from "react";
+import {React, useEffect, useState} from "react";
 import { Footer, Navbar } from "../components/Dashboard";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import appConfig from "../config/app.config";
+
 const Checkout = () => {
   const state = useSelector((state) => state.handleCart);
+  const REACT_APP_API_URL = appConfig.apiUrl;
+  const [formData, setFormData] = useState({
+        first_name: '',
+        last_name: '',
+        email: '',
+        address: '',
+        country:'',
+        state: '',
+        zip: '',
+        name_on_card: '',
+        card_number: '',
+        expired: '',
+        cvv: '',
+        product_name: '',
+        shipping_id: '',
+        total_amount: '',
+  });
 
   const EmptyCart = () => {
     return (
@@ -22,30 +41,22 @@ const Checkout = () => {
   };
 
   const handleCheckout = () => {
-    if (state.length === 0) {
-      return <SuccesCheckout />
+    // if (state.length === 0) {
+    //   return <SuccesCheckout />
+    // }
+
+    const sendOrder = () => {
+      axios.post(REACT_APP_API_URL + 'orders', formData)
+        .then((response) => {
+          if (response.status === 201) {
+            alert('Checkout Berhasil')
+          } else  {
+            response.data.message && alert(response.data.message)
+            alert('Gagal Checkout')
+          }
+
+        })
     }
-
-    const sendOrder = async () => {
-      const url = 'https://foodstore-api.herokuapp.com/order';
-      const data = {
-        items: state.map(item => ({
-          id_produk: item.id,
-          jumlah_produk: item.qty
-        }))
-      };
-
-      try {
-        const response = await axios.post(url, data);
-        if (response.status === 201) {
-          alert('Your order has been processed');
-          window.location.href = '/';
-        }
-      } catch (error) {
-        console.error(error);
-        alert('Failed to process order');
-      }
-    };
 
     return (
       <div className="container my-5">
