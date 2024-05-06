@@ -1,20 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import appConfig from '../../config/app.config';
 
-const EditProductForm = ({ product }) => {
-  const [editedProduct, setEditedProduct] = useState(product);
+const EditProductForm = ({ product, onEditProduct }) => {
+  const { REACT_APP_API_URL } = appConfig;
+  
+  const [editedProduct, setEditedProduct] = useState({
+    nama_produk: '',
+    harga: '',
+    deskripsi: '',
+    image: ''
+  });
+
+  useEffect(() => {
+    if (product) {
+      setEditedProduct(product);
+    }
+  }, [product]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEditedProduct({ ...editedProduct, [name]: value });
+    setEditedProduct(prevProduct => ({ ...prevProduct, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
-    console.log('Data yang diedit:', editedProduct);
+    try {
+      const response = await axios.put(`${REACT_APP_API_URL}/api/product/${product._id}`, editedProduct);
+      onEditProduct(response.data);
+    } catch (error) {
+      console.error('Error:', error);
+      // You might want to handle error state here and provide user feedback
+    }
   };
+
+  if (!product) {
+    return null; // Render nothing if product is not defined
+  }
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -23,7 +47,7 @@ const EditProductForm = ({ product }) => {
         <Form.Control
           type="text"
           name="nama_produk"
-          value={editedProduct.nama_produk || ''}
+          value={editedProduct.nama_produk}
           placeholder="Product Name"
           onChange={handleChange}
           required
@@ -34,7 +58,7 @@ const EditProductForm = ({ product }) => {
         <Form.Control
           type="number"
           name="harga"
-          value={editedProduct.harga || ''}
+          value={editedProduct.harga}
           placeholder="Price"
           onChange={handleChange}
           required
@@ -46,7 +70,7 @@ const EditProductForm = ({ product }) => {
           as="textarea"
           rows={8}
           name="deskripsi"
-          value={editedProduct.deskripsi || ''}
+          value={editedProduct.deskripsi}
           placeholder="Description"
           onChange={handleChange}
           required
@@ -57,15 +81,14 @@ const EditProductForm = ({ product }) => {
         <Form.Control
           type="text"
           name="image"
-          value={editedProduct.image || ''}
+          value={editedProduct.image}
           placeholder="Picture"
           onChange={handleChange}
-          required
         />
-        <Form.Text className="text-muted">Jika tidak ingin mengganti picture, biarkan kosong.</Form.Text>
+        <Form.Text className="text-muted">Leave empty if you don't want to change picture.</Form.Text>
       </Form.Group>
       <Button variant="primary" type="submit">
-        Simpan
+        Save
       </Button>
     </Form>
   );
