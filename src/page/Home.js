@@ -4,7 +4,6 @@ import Footer from '../components/Dashboard/Footer'
 import Category from '../components/Dashboard/Category'
 import NavBar from '../components/Dashboard/NavBar'
 import Product from '../components/Product/Products'
-
 const Home = () => {
   return (
     <div>

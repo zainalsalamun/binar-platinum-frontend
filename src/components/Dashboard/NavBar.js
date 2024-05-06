@@ -30,6 +30,9 @@ const NavBar = () => {
           <Nav.Item>
             <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
           </Nav.Item>
+          <Nav.Item>
+            <Nav.Link as={NavLink} to="/profile">Profile</Nav.Link>
+          </Nav.Item>
         </Nav>
         <div className="buttons text-center">
           <Button as={NavLink} to="/login" variant="outline-dark" className="m-2">
