@@ -102,7 +102,7 @@ const AddProductForm = () => {
               <Form.Control
                 type="text"
                 placeholder="Masukkan Nama Produk"
-                name="nama_produk"
+                name="nama_file"
                 value={formData.nama_file}
                 onChange={handleChange}
               />
