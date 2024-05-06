@@ -25,6 +25,7 @@ import About from './page/About.js'
 import Contact from './page/Contact.js'
 import Privacy from './page/Privacy.js'
 import Terms from './page/Terms.js'
+import Profile from './page/Profile.js'
 
 function App() {
   const [userstate, setUserState] = useState({})
@@ -51,6 +52,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Provider>
     </BrowserRouter>
